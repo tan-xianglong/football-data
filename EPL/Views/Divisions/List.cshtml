@@ -1,0 +1,30 @@
+﻿@model DivisionsListViewModel
+@{
+    ViewData["Title"] = "Divisions";
+}
+
+<h1>Divisions</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" asp-for="SearchTerm" class="form-control form-control-lg" placeholder="Search division name" />
+            <span>
+                <button class="btn btn-light btn-lg">
+                    <i class="bi bi-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+
+<div class="list-group">
+    <p class="list-group-item list-group-item-action active" aria-current="true">
+        Names
+    </p>
+    @foreach(var division in Model.Divisions)
+    {
+        <a href="#" class="list-group-item list-group-item-action">@division.Name</a>
+    }
+</div>

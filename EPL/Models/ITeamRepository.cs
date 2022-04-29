@@ -5,11 +5,13 @@ namespace EPL.Models
 {
 	public interface ITeamRepository
 	{
-		IEnumerable<Team> Teams { get; }
+		IEnumerable<Team> GetTeamByName(string name);
 
 		Team GetTeamById(int teamId);
 
-		void CreateTeam(Team team);
+		Team Update(Team updatedTeam);
+		Team Add(Team newTeam);
+		Team Delete(int id);
 	}
 }
 

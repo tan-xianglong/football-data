@@ -5,11 +5,14 @@ namespace EPL.Models
 {
 	public interface IDivisionRepository
 	{
-		IEnumerable<Division> Divisions { get; }
-
 		Division GetDivisionById(int divisionId);
 
-		void CreateDivision(Division division);
+		IEnumerable<Division> GetDivisionByName(string name);
+
+		Division Update(Division updatedDivision);
+		Division Add(Division newDivision);
+		Division Delete(int id);
+
 	}
 }
 

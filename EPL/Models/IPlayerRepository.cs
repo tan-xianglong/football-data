@@ -5,11 +5,13 @@ namespace EPL.Models
 {
 	public interface IPlayerRepository
 	{
-		IEnumerable<Player> Players { get; }
+		IEnumerable<Player> GetPlayerByName(string name);
 
 		Player GetPlayersById(int playerId);
 
-		void CreatePlayer(Player player);
+		Player Update(Player updatedPlayer);
+		Player Add(Player newPlayer);
+		Player Delete(int id);
 	}
 }
 

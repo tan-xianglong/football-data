@@ -30,9 +30,9 @@ namespace EPL
                 options.UseSqlServer(Configuration.GetConnectionString("DbContextConnection")));
             
 
-            services.AddScoped<IDivisionRepository, MockDivisionRepository>();
-            services.AddScoped<ITeamRepository, MockTeamRepository>();
-            services.AddScoped<IPlayerRepository, MockPlayerRepository>();
+            services.AddScoped<IDivisionRepository, DivisionRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
 
             services.AddHttpContextAccessor();
             services.AddSession();
