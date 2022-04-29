@@ -22,8 +22,7 @@ namespace EPL.Controllers
         [HttpGet]
         public IActionResult List(DivisionsListViewModel divisionsListViewModel)
         {
-            IEnumerable<Division> divisions;
-            divisions = divisionRepository.GetDivisionByName(divisionsListViewModel.SearchTerm);
+            var divisions = divisionRepository.GetDivisionByName(divisionsListViewModel.SearchTerm);
 
             return View(new DivisionsListViewModel
             {
