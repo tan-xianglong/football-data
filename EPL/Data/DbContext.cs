@@ -46,6 +46,18 @@ namespace EPL.Data
 				YearOfBirth = 1990
 			});
 
+			modelBuilder.Entity<Player>().HasData(new Player
+			{
+				PlayerId = 2,
+				TeamId = 1,
+				Name = "Cristiano Ronaldo",
+				Position = "Striker",
+				ShirtNumber = 7,
+				Height = 1.87,
+				Weight = 85,
+				YearOfBirth = 1985
+			});
+
 		}
 	}
 }
