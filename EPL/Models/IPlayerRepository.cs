@@ -7,7 +7,7 @@ namespace EPL.Models
 	{
 		IEnumerable<Player> Players { get; }
 
-		Team GetPlayersById(int teamId);
+		Player GetPlayersById(int playerId);
 
 		void CreatePlayer(Player player);
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EPL.Models
 {
@@ -38,9 +39,9 @@ namespace EPL.Models
             throw new NotImplementedException();
         }
 
-        public Team GetPlayersById(int teamId)
+        public Player GetPlayersById(int playerId)
         {
-            throw new NotImplementedException();
+            return Players.FirstOrDefault(p => p.TeamId == playerId);
         }
     }
 }
