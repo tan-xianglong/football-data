@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace EPL.Models
 {
@@ -15,7 +16,8 @@ namespace EPL.Models
 
         public Division Add(Division newDivision)
         {
-            throw new NotImplementedException();
+            appDbContext.Add(newDivision);
+            return newDivision;
         }
 
         public Division Delete(int id)
@@ -25,7 +27,7 @@ namespace EPL.Models
 
         public Division GetDivisionById(int divisionId)
         {
-            return appDbContext.Divisions.Find(divisionId);
+            return appDbContext.Divisions.FirstOrDefault(d => d.DivisionId == divisionId);
         }
 
         public IEnumerable<Division> GetDivisionByName(string name)
@@ -39,7 +41,14 @@ namespace EPL.Models
 
         public Division Update(Division updatedDivision)
         {
-            throw new NotImplementedException();
+            var entity = appDbContext.Divisions.Attach(updatedDivision);
+            entity.State = EntityState.Modified;
+            return updatedDivision;
+        }
+
+        public int Commit()
+        {
+            return appDbContext.SaveChanges();
         }
     }
 }

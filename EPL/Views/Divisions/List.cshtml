@@ -18,13 +18,29 @@
     </div>
 </form>
 
-
-<div class="list-group">
-    <p class="list-group-item list-group-item-action active" aria-current="true">
+@if(Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+<ul class="list-group">
+    <li class="list-group-item list-group-item-action active" aria-current="true">
         Names
-    </p>
+    </li>
     @foreach(var division in Model.Divisions)
     {
-        <a href="#" class="list-group-item list-group-item-action">@division.Name</a>
+        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="#" class="text-reset">
+                @division.Name
+                <span>
+                    <a class="btn btn-lg" asp-controller="Divisions" asp-action="Edit" asp-route-divisionId="@division.DivisionId">
+                        <i class="bi bi-pen-fill"></i>
+                    </a>
+                </span>
+            </a>
+
+        </li>
+
     }
-</div>
+</ul>
+<br />
+<a asp-action="Edit" class="btn btn-primary">Add New</a>

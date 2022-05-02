@@ -12,6 +12,7 @@ namespace EPL.Models
 		Division Update(Division updatedDivision);
 		Division Add(Division newDivision);
 		Division Delete(int id);
+		int Commit();
 
 	}
 }
