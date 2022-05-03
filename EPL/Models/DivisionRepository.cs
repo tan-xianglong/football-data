@@ -22,7 +22,12 @@ namespace EPL.Models
 
         public Division Delete(int id)
         {
-            throw new NotImplementedException();
+            var division = GetDivisionById(id);
+            if(division != null)
+            {
+                appDbContext.Divisions.Remove(division);
+            }
+            return division;
         }
 
         public Division GetDivisionById(int divisionId)

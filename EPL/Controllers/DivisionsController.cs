@@ -77,6 +77,21 @@ namespace EPL.Controllers
             TempData["message"] = "Division saved!"; //am I doing the tempdata right by putting at controller? if not, where?
             return RedirectToAction("List");
         }
+
+        [HttpPost]
+        public IActionResult Delete(int divisionId)
+        {
+            var division = divisionRepository.Delete(divisionId);
+            divisionRepository.Commit();
+            if(division == null)
+            {
+                return RedirectToPage("./NotFound");
+            }
+
+            TempData["Message"] = $"{division.Name} deleted.";
+            return RedirectToAction("List");
+
+        }
     }
 }
 

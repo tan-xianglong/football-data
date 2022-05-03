@@ -3,3 +3,13 @@
 
 // Write your JavaScript code.
 
+$('#deleteModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var name = button.data('name');
+    var id = button.data('id');
+    var repo = button.data('repo');
+    var primarykey = button.data('primarykey');
+    var modal = $(this);
+    modal.find('.modal-body p').text('Are you sure you want to delete ' + name + '?');
+    modal.find('.modal-footer form').attr('action', `/${repo}/Delete?${primarykey}=${id}`);
+});

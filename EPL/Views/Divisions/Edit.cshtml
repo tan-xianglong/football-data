@@ -9,11 +9,26 @@
     <input type="hidden" asp-for="Division.DivisionId" />
     <div class="form-group">
         <label asp-for="Division.Name"></label>
-        <input asp-for="Division.Name" class="form-control" value="@Model.Division.Name"/>
+        <input asp-for="Division.Name" class="form-control" value="@Model.Division.Name" />
         <span class="text-danger" asp-validation-for="Division.Name"></span>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
+    @if (Model.Division.DivisionId > 0)
+    {
+        <button class="btn btn-danger"
+                type="button"
+                data-toggle="modal"
+                data-target="#deleteModal"
+                data-repo="Divisions"
+                data-primarykey="divisionId"
+                data-name="@Model.Division.Name"
+                data-id="@Model.Division.DivisionId">
+            Delete
+        </button>
+    }
+    <a class="btn btn-secondary" asp-action="List">Cancel</a>
 </form>
+<partial name="_DeleteModal" />
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
