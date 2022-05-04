@@ -85,6 +85,20 @@ namespace EPL.Controllers
             TempData["message"] = "Team saved!";
             return RedirectToAction("List");
         }
+
+        [HttpPost]
+        public IActionResult Delete(int teamId)
+        {
+            var team = teamRepository.Delete(teamId);
+            teamRepository.Commit();
+            if(team == null)
+            {
+                return NotFound();
+            }
+
+            TempData["Message"] = $"{team.Name} deleted.";
+            return RedirectToAction("List");
+        }
     }
 }
 

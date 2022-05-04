@@ -84,7 +84,7 @@ namespace EPL.Controllers
             divisionRepository.Commit();
             if(division == null)
             {
-                return RedirectToPage("./NotFound");
+                return NotFound();
             }
 
             TempData["Message"] = $"{division.Name} deleted.";
