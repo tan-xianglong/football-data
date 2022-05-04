@@ -1,0 +1,37 @@
+﻿@model Team
+@{
+    ViewData["Title"] = Model.Division.Name + " - " + Model.Name;
+}
+
+<h2>@Model.Name</h2>
+
+
+<div>
+    <div>Division: @Model.Division.Name</div>
+    <div>Location: @Model.Location</div>
+    <div>Address: @Model.Stadium</div>
+</div>
+<hr />
+<div class="table-responsive">
+    <h3>Squad List</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Shirt #</th>
+                <th scope="col">Name</th>
+                <th scope="col">Position</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var player in Model.Players)
+            {
+                <tr>
+                    <th scope="row">@player.ShirtNumber</th>
+                    <td>@player.Name</td>
+                    <td>@player.Position</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

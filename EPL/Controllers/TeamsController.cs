@@ -31,6 +31,13 @@ namespace EPL.Controllers
                 Message = message
             });
         }
+
+        public IActionResult Details(int teamId)
+        {
+            var team = teamRepository.GetTeamById(teamId);
+                
+            return View(team);
+        }
     }
 }
 
