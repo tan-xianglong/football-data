@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 $('#deleteModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
+    var button = $(event.relatedTarget);
     var name = button.data('name');
     var id = button.data('id');
     var repo = button.data('repo');

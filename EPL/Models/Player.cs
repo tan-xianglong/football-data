@@ -8,6 +8,7 @@ namespace EPL.Models
         
         public int PlayerId { get; set; }
 
+        [Required]
         public int TeamId { get; set; }
 
         [Required(ErrorMessage ="Please enter player's name.")]

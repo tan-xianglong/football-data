@@ -1,0 +1,56 @@
+﻿@model TeamsEditViewModel
+
+@{
+    ViewData["Title"] = "Team - Edit";
+}
+
+<h2> @Model.Header @Model.Team.Name</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Team.TeamId" />
+    <div class="form-group">
+        <label asp-for="Team.Name"></label>
+        <input asp-for="Team.Name" class="form-control" value="@Model.Team.Name" />
+        <span class="text-danger" asp-validation-for="Team.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Team.Location"></label>
+        <input asp-for="Team.Location" class="form-control" value="@Model.Team.Location" />
+        <span class="text-danger" asp-validation-for="Team.Location"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Team.Stadium"></label>
+        <input asp-for="Team.Stadium" class="form-control" value="@Model.Team.Stadium" />
+        <span class="text-danger" asp-validation-for="Team.Stadium"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Team.DivisionId"></label>
+        <select asp-for="Team.DivisionId" class="form-control">
+            @foreach(var division in Model.Divisions)
+            {
+                <option value="@division.DivisionId">@division.Name</option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="Team.DivisionId"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    @if (Model.Team.TeamId > 0)
+    {
+        <button class="btn btn-danger"
+                type="button"
+                data-toggle="modal"
+                data-target="#deleteModal"
+                data-repo="Teams"
+                data-primarykey="teamId"
+                data-name="@Model.Team.Name"
+                data-id="@Model.Team.TeamId">
+            Delete
+        </button>
+    }
+    <a class="btn btn-secondary" asp-action="List">Cancel</a>
+</form>
+<partial name="_DeleteModal" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
