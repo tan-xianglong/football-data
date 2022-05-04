@@ -12,7 +12,6 @@ namespace EPL.Controllers
 {
     public class DivisionsController : Controller
     {
-        //public Division Division { get; set; }
 
         private readonly IDivisionRepository divisionRepository;
 
@@ -24,7 +23,7 @@ namespace EPL.Controllers
             this.divisionRepository = divisionRepository;
         }
         // GET: /<controller>/
-        [HttpGet]
+
         public IActionResult List(DivisionsListViewModel divisionsListViewModel)
         {
             var divisions = divisionRepository.GetDivisionByName(divisionsListViewModel.SearchTerm);

@@ -1,14 +1,14 @@
-﻿@model DivisionsListViewModel
+﻿@model TeamsListViewModel
 @{
-    ViewData["Title"] = "Divisions";
+    ViewData["Title"] = "Teams";
 }
 
-<h1>Divisions</h1>
+<h1>Teams</h1>
 
 <form method="get">
     <div class="form-group">
         <div class="input-group">
-            <input type="search" asp-for="SearchTerm" class="form-control form-control-lg" placeholder="Search division name" />
+            <input type="search" asp-for="SearchTerm" class="form-control form-control-lg" placeholder="Search team name" />
             <span>
                 <button class="btn btn-light btn-lg">
                     <i class="bi bi-search"></i>
@@ -18,7 +18,7 @@
     </div>
 </form>
 
-@if(Model.Message != null)
+@if (Model.Message != null)
 {
     <div class="alert alert-info">@Model.Message</div>
 }
@@ -26,17 +26,17 @@
     <li class="list-group-item list-group-item-action active" aria-current="true">
         Names
     </li>
-    @foreach(var division in Model.Divisions)
+    @foreach (var team in Model.Teams)
     {
         <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            <a asp-controller="Teams" asp-action="List" asp-route-divisionId="@division.DivisionId" class="text-reset">
-                @division.Name
+            <a href="#" class="text-reset">
+                @team.Name
             </a>
             <span>
-                <a class="btn btn-lg" asp-controller="Divisions" asp-action="Edit" asp-route-divisionId="@division.DivisionId">
+                <a class="btn btn-lg" asp-controller="Teams" asp-action="Edit" asp-route-divisionId="@team.TeamId">
                     <i class="bi bi-pen-fill"></i>
                 </a>
-                <a class="btn btn-lg" data-toggle="modal" data-target="#deleteModal" data-repo="Divisions" data-primarykey="divisionId" data-name="@division.Name" data-id="@division.DivisionId">
+                <a class="btn btn-lg" data-toggle="modal" data-target="#deleteModal" data-repo="Teams" data-primarykey="teamId" data-name="@team.Name" data-id="@team.DivisionId">
                     <i class="bi bi-archive-fill"></i>
                 </a>
             </span>

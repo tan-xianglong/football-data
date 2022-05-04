@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace EPL.Models
 {
@@ -15,31 +16,55 @@ namespace EPL.Models
 
         public Team Add(Team newTeam)
         {
-            throw new NotImplementedException();
+            appDbContext.Add(newTeam);
+            return newTeam;
         }
 
         public Team Delete(int id)
         {
-            throw new NotImplementedException();
+            var team = GetTeamById(id);
+            if (team != null)
+            {
+                appDbContext.Teams.Remove(team);
+            }
+            return team;
         }
 
         public Team GetTeamById(int teamId)
         {
-            return appDbContext.Teams.Find(teamId);
+            return appDbContext.Teams.FirstOrDefault(t => t.TeamId == teamId);
         }
 
-        public IEnumerable<Team> GetTeamByName(string name)
+        public IEnumerable<Team> GetTeamByName(string name, int? divisionId)
         {
-            var query = from d in appDbContext.Teams
-                        where d.Name.Contains(name) || string.IsNullOrEmpty(name)
-                        orderby d.Name
-                        select d;
+            IEnumerable<Team> query;
+            if (divisionId.HasValue)
+            {
+                query = from t in appDbContext.Teams
+                        where t.DivisionId.Equals(divisionId)
+                        orderby t.Name
+                        select t;
+            }
+            else
+            {
+                query = from t in appDbContext.Teams
+                        where t.Name.Contains(name) || string.IsNullOrEmpty(name)
+                        orderby t.Name
+                        select t;
+            }
             return query;
         }
 
         public Team Update(Team updatedTeam)
         {
-            throw new NotImplementedException();
+            var entity = appDbContext.Teams.Attach(updatedTeam);
+            entity.State = EntityState.Modified;
+            return updatedTeam;
+        }
+
+        public int Commit()
+        {
+            return appDbContext.SaveChanges();
         }
     }
 }
