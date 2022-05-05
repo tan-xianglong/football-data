@@ -23,15 +23,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var player in Model.Players)
+            @foreach (var player in Model.Players)
             {
                 <tr>
                     <th scope="row">@player.ShirtNumber</th>
-                    <td>@player.Name</td>
+                    <td><a asp-controller="Players" asp-action="Details" asp-route-playerId="@player.PlayerId" class="text-reset">
+                        @player.Name
+                    </a></td>
                     <td>@player.Position</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+<a class="btn btn-primary" asp-action="Edit" asp-route-teamId="@Model.TeamId">
+    Edit
+</a>
+<button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-controller="Teams" data-primarykey="teamId" data-name="@Model.Name" data-id="@Model.TeamId">
+    Delete
+</button>
+<partial name="_DeleteModal" />
 

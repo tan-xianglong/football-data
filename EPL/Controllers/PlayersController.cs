@@ -32,7 +32,12 @@ namespace EPL.Controllers
             });
         }
 
-        
+        public IActionResult Details(int playerId)
+        {
+            var player = playerRepository.GetPlayerById(playerId);
+
+            return View(player);
+        }
 	}
 }
 
