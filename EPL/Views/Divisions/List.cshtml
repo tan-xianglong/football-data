@@ -36,7 +36,7 @@
                 <a class="btn btn-lg" asp-controller="Divisions" asp-action="Edit" asp-route-divisionId="@division.DivisionId">
                     <i class="bi bi-pen-fill"></i>
                 </a>
-                <a class="btn btn-lg" data-toggle="modal" data-target="#deleteModal" data-repo="Divisions" data-primarykey="divisionId" data-name="@division.Name" data-id="@division.DivisionId">
+                <a class="btn btn-lg" data-toggle="modal" data-target="#deleteModal" data-controller="Divisions" data-primarykey="divisionId" data-name="@division.Name" data-id="@division.DivisionId">
                     <i class="bi bi-archive-fill"></i>
                 </a>
             </span>

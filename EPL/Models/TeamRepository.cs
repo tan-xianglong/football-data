@@ -33,10 +33,6 @@ namespace EPL.Models
         public Team GetTeamById(int teamId)
         {
             var team = appDbContext.Teams.FirstOrDefault(t => t.TeamId == teamId);
-            //var players = from p in appDbContext.Players
-            //          where p.TeamId.Equals(teamId)
-            //          orderby p.ShirtNumber
-            //          select p;
             var players = appDbContext.Players.Where(p => p.TeamId == teamId)
                 .OrderBy(p => p.ShirtNumber).ToList();
             var division = appDbContext.Divisions.FirstOrDefault(d => d.DivisionId == team.DivisionId);
@@ -46,7 +42,7 @@ namespace EPL.Models
             return team;
         }
 
-        public IEnumerable<Team> GetTeamByName(string name, int? divisionId)
+        public IEnumerable<Team> GetTeamsByName(string name, int? divisionId)
         {
             IEnumerable<Team> query;
             if (divisionId.HasValue)

@@ -15,6 +15,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Teams\" />
+    <None Remove="Views\Players\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.16" />
@@ -32,5 +33,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Teams\" />
+    <Folder Include="Views\Players\" />
   </ItemGroup>
 </Project>

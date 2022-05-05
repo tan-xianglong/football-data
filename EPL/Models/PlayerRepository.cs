@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace EPL.Models
 {
@@ -15,31 +16,49 @@ namespace EPL.Models
 
         public Player Add(Player newPlayer)
         {
-            throw new NotImplementedException();
+            appDbContext.Add(newPlayer);
+            return newPlayer;
         }
 
         public Player Delete(int id)
         {
-            throw new NotImplementedException();
+            var player = GetPlayerById(id);
+            if (player != null)
+            {
+                appDbContext.Players.Remove(player);
+            }
+            return player;
         }
 
-        public IEnumerable<Player> GetPlayerByName(string name)
+        public IEnumerable<Player> GetPlayersByName(string name)
         {
-            var query = from d in appDbContext.Players
-                        where d.Name.Contains(name) || string.IsNullOrEmpty(name)
-                        orderby d.Name
-                        select d;
+            var query = from p in appDbContext.Players
+                        where p.Name.Contains(name) || string.IsNullOrEmpty(name)
+                        orderby p.Name
+                        select p;
             return query;
         }
 
-        public Player GetPlayersById(int playerId)
+        public Player GetPlayerById(int playerId)
         {
-            return appDbContext.Players.Find(playerId);
+            var player = appDbContext.Players.FirstOrDefault(p => p.PlayerId == playerId);
+            var team = appDbContext.Teams.FirstOrDefault(t => t.TeamId == player.TeamId);
+
+            player.Team = team;
+
+            return player;
         }
 
         public Player Update(Player updatedPlayer)
         {
-            throw new NotImplementedException();
+            var entity = appDbContext.Players.Attach(updatedPlayer);
+            entity.State = EntityState.Modified;
+            return updatedPlayer;
+        }
+
+        public int Commit()
+        {
+            return appDbContext.SaveChanges();
         }
     }
 }

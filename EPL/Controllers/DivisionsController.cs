@@ -80,6 +80,7 @@ namespace EPL.Controllers
         [HttpPost]
         public IActionResult Delete(int divisionId)
         {
+            //to add existing team check in the future
             var division = divisionRepository.Delete(divisionId);
             divisionRepository.Commit();
             if(division == null)

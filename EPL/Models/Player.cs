@@ -31,7 +31,6 @@ namespace EPL.Models
         [Range(1940, 2099)]
         public int YearOfBirth { get; set; }
 
-        [Required(ErrorMessage = "Please select player's team.")]
         public Team Team { get; set; }
 
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using EPL.Models;
 using EPL.ViewModels;
@@ -25,7 +24,7 @@ namespace EPL.Controllers
 
         public IActionResult List(TeamsListViewModel teamsListViewModel, int? divisionId)
         {
-            var teams = teamRepository.GetTeamByName(teamsListViewModel.SearchTerm, divisionId);
+            var teams = teamRepository.GetTeamsByName(teamsListViewModel.SearchTerm, divisionId);
 
             return View(new TeamsListViewModel
             {
@@ -89,6 +88,7 @@ namespace EPL.Controllers
         [HttpPost]
         public IActionResult Delete(int teamId)
         {
+            //to add existing player check in the future
             var team = teamRepository.Delete(teamId);
             teamRepository.Commit();
             if(team == null)

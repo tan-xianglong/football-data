@@ -5,7 +5,7 @@ namespace EPL.Models
 {
 	public interface ITeamRepository
 	{
-		IEnumerable<Team> GetTeamByName(string name, int? divisionId);
+		IEnumerable<Team> GetTeamsByName(string name, int? divisionId);
 
 		Team GetTeamById(int teamId);
 
