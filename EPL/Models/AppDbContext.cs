@@ -1,9 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EPL.Models
 {
-	public class AppDbContext : DbContext
+	public class AppDbContext : IdentityDbContext<IdentityUser>
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
@@ -15,6 +17,8 @@ namespace EPL.Models
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Division>().HasData(new Division
             {
                 DivisionId = 1,
@@ -54,6 +58,8 @@ namespace EPL.Models
                 Weight = 85,
                 YearOfBirth = 1985
             });
+
+
 
         }
     }
