@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeIndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,7 +8,7 @@
     <form method="get">
         <div class="form-group">
             <div class="input-group">
-                <input type="search" class="form-control form-control-lg" placeholder="Search name" />
+                <input type="search" asp-for="SearchTerm" class="form-control form-control-lg" placeholder="Search name" />
                 <span>
                     <button class="btn btn-light btn-lg">
                         <i class="bi bi-search"></i>
@@ -16,5 +17,54 @@
             </div>
         </div>
     </form>
+
+    @if(Model.Players.Count() > 0)
+    {
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-action active" aria-current="true">
+                Players
+            </li>
+            @foreach (var player in Model.Players)
+            {
+                <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a asp-controller="Players" asp-action="Details" asp-route-playerId="@player.PlayerId" class="text-reset">
+                        @player.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+    @if(Model.Teams.Count() > 0)
+    {
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-action active" aria-current="true">
+                Teams
+            </li>
+            @foreach (var team in Model.Teams)
+            {
+                <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a asp-controller="Teams" asp-action="Details" asp-route-teamId="@team.TeamId" class="text-reset">
+                        @team.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+    @if(Model.Divisions.Count() > 0)
+    {
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-action active" aria-current="true">
+                Divisions
+            </li>
+            @foreach (var division in Model.Divisions)
+            {
+                <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a asp-controller="Teams" asp-action="List" asp-route-divisionId="@division.DivisionId" class="text-reset">
+                        @division.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    }
 </div>
 
