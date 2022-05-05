@@ -12,7 +12,7 @@ namespace EPL.Migrations
                 {
                     DivisionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,7 +50,7 @@ namespace EPL.Migrations
                     TeamId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ShirtNumber = table.Column<int>(type: "int", nullable: false),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Position = table.Column<int>(type: "int", nullable: false),
                     Height = table.Column<double>(type: "float", nullable: false),
                     Weight = table.Column<double>(type: "float", nullable: false),
                     YearOfBirth = table.Column<int>(type: "int", nullable: false)
@@ -79,12 +79,12 @@ namespace EPL.Migrations
             migrationBuilder.InsertData(
                 table: "Players",
                 columns: new[] { "PlayerId", "Height", "Name", "Position", "ShirtNumber", "TeamId", "Weight", "YearOfBirth" },
-                values: new object[] { 1, 1.9199999999999999, "David De Gea", "Goalkeeper", 1, 1, 82.0, 1990 });
+                values: new object[] { 1, 1.9199999999999999, "David De Gea", 3, 1, 1, 82.0, 1990 });
 
             migrationBuilder.InsertData(
                 table: "Players",
                 columns: new[] { "PlayerId", "Height", "Name", "Position", "ShirtNumber", "TeamId", "Weight", "YearOfBirth" },
-                values: new object[] { 2, 1.8700000000000001, "Cristiano Ronaldo", "Striker", 7, 1, 85.0, 1985 });
+                values: new object[] { 2, 1.8700000000000001, "Cristiano Ronaldo", 0, 7, 1, 85.0, 1985 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamId",

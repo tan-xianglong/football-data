@@ -56,9 +56,8 @@ namespace EPL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
 
                     b.Property<int>("ShirtNumber")
                         .HasColumnType("int");
@@ -84,7 +83,7 @@ namespace EPL.Migrations
                             PlayerId = 1,
                             Height = 1.9199999999999999,
                             Name = "David De Gea",
-                            Position = "Goalkeeper",
+                            Position = 3,
                             ShirtNumber = 1,
                             TeamId = 1,
                             Weight = 82.0,
@@ -95,7 +94,7 @@ namespace EPL.Migrations
                             PlayerId = 2,
                             Height = 1.8700000000000001,
                             Name = "Cristiano Ronaldo",
-                            Position = "Striker",
+                            Position = 0,
                             ShirtNumber = 7,
                             TeamId = 1,
                             Weight = 85.0,

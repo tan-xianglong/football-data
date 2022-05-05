@@ -1,6 +1,71 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model PlayersEditViewModel
+
 @{
+    ViewData["Title"] = "Player - Edit";
 }
 
+<h2>@Model.Header @Model.Player.Name</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Player.PlayerId" />
+    <div class="form-group">
+        <label asp-for="Player.Name"></label>
+        <input asp-for="Player.Name" class="form-control" value="@Model.Player.Name" />
+        <span class="text-danger" asp-validation-for="Player.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Player.ShirtNumber"></label>
+        <input asp-for="Player.ShirtNumber" class="form-control" value="@Model.Player.ShirtNumber" />
+        <span class="text-danger" asp-validation-for="Player.ShirtNumber"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Player.Position"></label>
+        <select class="form-control" asp-for="Player.Position" asp-items="Model.Positions"></select>
+        <span class="text-danger" asp-validation-for="Player.Position"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Player.TeamId"></label>
+        <select asp-for="Player.TeamId" class="form-control">
+            @foreach (var team in Model.Teams)
+            {
+                <option value="@team.TeamId">@team.Name</option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="Player.TeamId"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Player.Height"></label>
+        <input asp-for="Player.Height" class="form-control" value="@Model.Player.Height" />
+        <span class="text-danger" asp-validation-for="Player.Height"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Player.Weight"></label>
+        <input asp-for="Player.Weight" class="form-control" value="@Model.Player.Weight" />
+        <span class="text-danger" asp-validation-for="Player.Weight"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Player.YearOfBirth"></label>
+        <input asp-for="Player.YearOfBirth" class="form-control" value="@Model.Player.YearOfBirth" />
+        <span class="text-danger" asp-validation-for="Player.YearOfBirth"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    @if (Model.Player.PlayerId > 0)
+    {
+        <button class="btn btn-danger"
+                type="button"
+                data-toggle="modal"
+                data-target="#deleteModal"
+                data-controller="Players"
+                data-primarykey="playerId"
+                data-name="@Model.Player.Name"
+                data-id="@Model.Player.PlayerId">
+            Delete
+        </button>
+    }
+    <a class="btn btn-secondary" asp-action="List">Cancel</a>
+</form>
+<partial name="_DeleteModal" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
