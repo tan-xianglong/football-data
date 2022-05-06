@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EPL.Models;
 using EPL.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,7 +36,7 @@ namespace EPL.Controllers
             });
         }
 
-
+        [Authorize]
         public IActionResult Edit(int? divisionId)
         {
             Division division;
@@ -61,6 +62,7 @@ namespace EPL.Controllers
             });
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Edit(Division division)
         {
@@ -77,6 +79,7 @@ namespace EPL.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(int divisionId)
         {

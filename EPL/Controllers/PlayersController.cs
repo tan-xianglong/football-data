@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EPL.Models;
 using EPL.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -42,6 +43,7 @@ namespace EPL.Controllers
             return View(player);
         }
 
+        [Authorize]
         public IActionResult Edit(int? playerId)
         {
             Player player;
@@ -74,6 +76,7 @@ namespace EPL.Controllers
             });
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Edit(Player player)
         {
@@ -90,6 +93,7 @@ namespace EPL.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(int playerId)
         {
