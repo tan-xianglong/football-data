@@ -28,7 +28,8 @@ namespace EPL
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DbContextConnection")));
-            
+
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
 
             services.AddScoped<IDivisionRepository, DivisionRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
